@@ -66,7 +66,7 @@ def main():
     try:
         s1.course = 7
     except ValueError as e:
-        print("Ошибка при попытке установить некорректный курс:", e)
+        print(f"Ошибка при попытке установить некорректный курс: {e}")
     print()
 
     print("Сценарий 8 — атрибут класса:")
@@ -77,12 +77,6 @@ def main():
     print("Сценарий 9 — __repr__:")
     print(repr(s1))
     print()
-
-    print("Сценарий 10 — Перевод на курс:")
-    s4 = Student("Анна Смирнова", "22049876", 5, 4.9, 4000)
-    print(f"Был курс: {s4.course}")
-    s4.promote()
-    print(f"Стал курс: {s4.course}")
 
 if __name__ == "__main__":
     main()
