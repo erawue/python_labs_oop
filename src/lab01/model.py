@@ -1,50 +1,32 @@
+from validate import (
+    validate_name, 
+    validate_student_id, 
+    validate_course, 
+    validate_gpa, 
+    validate_stipend
+)
+
 class Student:
     total_students = 0
     MIN_GPA, MAX_GPA = 2.0, 5.0
     MIN_COURSE, MAX_COURSE = 1, 6
 
     def __init__(self, name, student_id, course, gpa, stipend=3000):
-        self._validate_name(name)
-        self._validate_id(student_id)
-        self._validate_course(course)
-        self._validate_gpa(gpa)
-        self._validate_stipend(stipend)
-
-        self._name = name.strip()
-        self._student_id = student_id
-        self._course = course
-        self._gpa = float(gpa)
-        self._stipend = float(stipend)
+        # Валидация через импортированные функции
+        self._name = validate_name(name)
+        self._student_id = validate_student_id(student_id)
+        self._course = validate_course(course, self.MIN_COURSE, self.MAX_COURSE)
+        self._gpa = validate_gpa(gpa, self.MIN_GPA, self.MAX_GPA)
+        self._stipend = validate_stipend(stipend)
         self._is_studying = True
         
         Student.total_students += 1
-
-    # Валидация
-    def _validate_name(self, v):
-        if not isinstance(v, str) or len(v.strip()) < 5 or ' ' not in v:
-            raise ValueError("ФИО должно быть строкой из имени и фамилии")
-
-    def _validate_id(self, v):
-        if not (isinstance(v, str) and v.isdigit() and len(v) == 8):
-            raise ValueError("ID должен быть строкой из 8 цифр")
-
-    def _validate_course(self, v):
-        if not isinstance(v, int) or not self.MIN_COURSE <= v <= self.MAX_COURSE:
-            raise ValueError(f"Курс от {self.MIN_COURSE} до {self.MAX_COURSE}")
-
-    def _validate_gpa(self, v):
-        if not isinstance(v, (int, float)) or not self.MIN_GPA <= v <= self.MAX_GPA:
-            raise ValueError(f"GPA от {self.MIN_GPA} до {self.MAX_GPA}")
-
-    def _validate_stipend(self, v):
-        if not isinstance(v, (int, float)) or v < 0:
-            raise ValueError("Стипендия должна быть >= 0")
 
     # Свойства
     @property
     def name(self): return self._name
     @name.setter
-    def name(self, v): self._validate_name(v); self._name = v.strip()
+    def name(self, v): self._name = validate_name(v)
 
     @property
     def student_id(self): return self._student_id
@@ -52,19 +34,17 @@ class Student:
     @property
     def course(self): return self._course
     @course.setter
-    def course(self, v): self._validate_course(v); self._course = v
+    def course(self, v): self._course = validate_course(v, self.MIN_COURSE, self.MAX_COURSE)
 
     @property
     def gpa(self): return self._gpa
     @gpa.setter
-    def gpa(self, v): 
-        self._validate_gpa(v)
-        self._gpa = float(v)
+    def gpa(self, v): self._gpa = validate_gpa(v, self.MIN_GPA, self.MAX_GPA)
 
     @property
     def stipend(self): return self._stipend
     @stipend.setter
-    def stipend(self, v): self._validate_stipend(v); self._stipend = float(v)
+    def stipend(self, v): self._stipend = validate_stipend(v)
 
     @property
     def is_studying(self): return self._is_studying
