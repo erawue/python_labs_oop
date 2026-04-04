@@ -1,4 +1,4 @@
-from validate import (
+from validations import (
     validate_name, 
     validate_student_id, 
     validate_course, 
