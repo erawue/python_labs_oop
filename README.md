@@ -14,3 +14,11 @@
  - [model.py](src/lab02/model.py) — реализация класса Student с инкапсуляцией  
  - [demo.py](src/lab02/demo.py) — демонстрационная программа  
  - [collection.py](src/lab02/collection.py) — класс StudentGroup  
+
+ # Лабораторная работа 3 — Наследование и иерархия классов
+
+ [README.md](src/lab03/README.md) — полное описание заданий и скриншотов 
+
+ - [base.py](src/lab03/base.py) — базовый класс Student
+ - [models.py](src/lab03/models.py) — дочерние классы BachelorStudent, MasterStudent
+ - [demo.py](src/lab03/demo.py) — демонстрационная программа
