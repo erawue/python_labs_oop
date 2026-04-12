@@ -1,52 +1,49 @@
 from base import Student
+
 class StudentGroup:
     def __init__(self):
         self._items = []
     
-    def add(self, student): #Добавить студента в коллекцию
+    def add(self, student):
         if not isinstance(student, Student):
             raise TypeError("Можно добавлять только объекты Student")
         if student in self._items:
             raise ValueError(f"Студент с ID {student.student_id} уже есть в группе")
         self._items.append(student)
     
-    def remove(self, student): #Удалить студента из коллекции
+    def remove(self, student):
         if student not in self._items:
             raise ValueError("Такого студента нет в группе")
         self._items.remove(student)
     
-    def remove_at(self, index): #Удалить студента по индексу
+    def remove_at(self, index):
         if not 0 <= index < len(self._items):
             raise IndexError("Индекс вне диапазона")
         return self._items.pop(index)
     
-    def get_all(self): #Вернуть список всех студентов
+    def get_all(self):
         return self._items.copy()
     
-    #Поиск
-    def find_by_id(self, student_id): #Найти студента по номеру зачетки
+    def find_by_name(self, name_part):
+        result = []
+        for student in self._items:
+            if name_part.lower() in student.name.lower():
+                result.append(student)
+        return result
+    
+    def find_by_id(self, student_id):
         for student in self._items:
             if student.student_id == student_id:
                 return student
         return None
     
-    def find_by_name(self, name): #Найти студента по имени
-        for student in self._items:
-            if student.name.lower() == name.lower():
-                return student
-        return None
-    
-    def find_by_course(self, course): #Найти всех студентов на заданном курсе
-        return [s for s in self._items if s.course == course]
-    
-    #Магические методы
-    def __len__(self): #Возвращает количество студентов в группе
+    def __len__(self):
         return len(self._items)
     
-    def __iter__(self): #Позволяет итерироваться по коллекции
+    def __iter__(self):
         return iter(self._items)
     
-    def __getitem__(self, index): #Позволяет обращаться по индексу collection[i]
+    def __getitem__(self, index):
         if isinstance(index, slice):
             new_group = StudentGroup()
             for student in self._items[index]:
@@ -57,7 +54,7 @@ class StudentGroup:
     def __contains__(self, student):
         return student in self._items
     
-    def __str__(self): #Строковое представление коллекции
+    def __str__(self):
         if not self._items:
             return "Группа пуста"
         result = f"Группа студентов (всего: {len(self._items)}):\n"
@@ -66,37 +63,15 @@ class StudentGroup:
             result += f"{i}. {student.name} (ID: {student.student_id}, курс: {student.course})\n"
         return result
     
-    #Сортировка
-    def sort_by_name(self, reverse=False): #Сортировка по имени
+    def sort_by_name(self, reverse=False):
         self._items.sort(key=lambda s: s.name, reverse=reverse)
     
-    def sort_by_course(self, reverse=False): #Сортировка по курсу
-        self._items.sort(key=lambda s: s.course, reverse=reverse)
-    
-    def sort_by_gpa(self, reverse=False): #Сортировка по среднему баллу
+    def sort_by_gpa(self, reverse=False):
         self._items.sort(key=lambda s: s.gpa, reverse=reverse)
     
-    def sort(self, key, reverse=False): #Универсальная сортировка
-        self._items.sort(key=key, reverse=reverse)
-    
-    #Фильтрация
-    def get_active(self): #Получить коллекцию только из учащихся студентов
+    def get_active(self):
         new_group = StudentGroup()
         for student in self._items:
             if student.is_studying:
-                new_group.add(student)
-        return new_group
-    
-    def get_honors(self): #Получить коллекцию отличников
-        new_group = StudentGroup()
-        for student in self._items:
-            if student.is_honors():
-                new_group.add(student)
-        return new_group
-    
-    def get_by_course(self, course): #Получить студентов заданного курса
-        new_group = StudentGroup()
-        for student in self._items:
-            if student.course == course:
                 new_group.add(student)
         return new_group
