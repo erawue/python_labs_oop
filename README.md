@@ -12,9 +12,9 @@
  [README.md](src/lab02/README.md) — полное описание заданий и скриншотов 
 
  - [model.py](src/lab02/model.py) — реализация класса Student с инкапсуляцией  
- - [demo.py](src/lab02/demo.py) — демонстрационная программа  
  - [collection.py](src/lab02/collection.py) — класс StudentGroup  
-
+ - [demo.py](src/lab02/demo.py) — демонстрационная программа  
+ 
  # Лабораторная работа 3 — Наследование и иерархия классов
 
  [README.md](src/lab03/README.md) — полное описание заданий и скриншотов 
