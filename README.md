@@ -22,3 +22,11 @@
  - [base.py](src/lab03/base.py) — базовый класс Student
  - [models.py](src/lab03/models.py) — дочерние классы BachelorStudent, MasterStudent
  - [demo.py](src/lab03/demo.py) — демонстрационная программа
+
+# Лабораторная работа 4 — Интерфейсы и абстрактные классы (ABC)
+
+ [README.md](src/lab04/README.md) — полное описание заданий и скриншотов 
+ 
+ - [interfaces.py](src/lab04/interfaces.py) — абстрактные классы (интерфейсы)
+ - [models.py](src/lab04/models.py) — классы Student, BachelorStudent, MasterStudent
+ - [demo.py](src/lab04/demo.py) — демонстрационная программа
