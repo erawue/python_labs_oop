@@ -30,3 +30,18 @@
  - [interfaces.py](src/lab04/interfaces.py) — абстрактные классы (интерфейсы)
  - [models.py](src/lab04/models.py) — классы Student, BachelorStudent, MasterStudent
  - [demo.py](src/lab04/demo.py) — демонстрационная программа
+
+ # Лабораторная работа 5 — Функции как аргументы. Стратегии и делегаты
+
+[README.md](src/lab05/README.md) — полное описание заданий и скриншотов 
+
+ - [strategies.py](src/lab05/strategies.py) — функции-стратегии, фильтры, фабрика функций, callable-объекты
+ - [collection.py](src/lab05/collection.py) — класс StudentGroup с методами sort_by, filter_by, apply, apply_map, chain_operations
+ - [demo.py](src/lab05/demo.py) — демонстрационная программа
+
+ # Лабораторная работа 6 — Generics и typing
+
+ [README.md](src/lab06/README.md) — полное описание заданий и скриншотов 
+
+  - [container.py](src/lab06/container.py) — Generic-класс TypedCollection и Protocol
+  - [demo.py](src/lab06/demo.py) — демонстрационная программа
