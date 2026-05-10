@@ -1,20 +1,13 @@
-"""Модуль с классом коллекции StudentGroup, поддерживающим функции как аргументы."""
-
 from typing import List, Callable, Any
 
-
 class StudentGroup:
-    """Коллекция студентов с поддержкой функциональных операций."""
-    
     def __init__(self):
         self._items = []
     
-    def add(self, student):
-        """Добавить студента в коллекцию."""
+    def add(self, student): #Добавить студента в коллекцию.
         self._items.append(student)
     
-    def get_all(self):
-        """Вернуть копию списка всех студентов."""
+    def get_all(self): #Вернуть копию списка всех студентов.
         return self._items.copy()
     
     def __len__(self):
@@ -35,7 +28,6 @@ class StudentGroup:
             result += f"{i}. {student.name} ({type(student).__name__}, курс {student.course}, GPA {student.gpa})\n"
         return result
     
-    # ==================== МЕТОДЫ С ФУНКЦИЯМИ КАК АРГУМЕНТАМИ ====================
     
     def sort_by(self, key_func: Callable, reverse: bool = False):
         """
@@ -100,11 +92,9 @@ class StudentGroup:
         # Сортировка
         filtered.sort(key=sort_key_func, reverse=sort_reverse)
         
-        # Применение (если есть)
         if apply_func:
             result = []
             for item in filtered:
                 result.append(apply_func(item))
             return result
-        
         return filtered
