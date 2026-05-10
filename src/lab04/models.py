@@ -1,5 +1,9 @@
-from interfaces import StudyManageable, AchievementsInterface
-from validations import (
+import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from lab04.interfaces import StudyManageable, AchievementsInterface
+from lab02.validations import (
     validate_name, validate_student_id, validate_course, validate_gpa, validate_stipend
 )
 
