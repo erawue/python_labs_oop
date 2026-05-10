@@ -14,9 +14,6 @@ def sort_by_course_then_name(student):
     """Ключ сортировки: сначала курс, затем имя."""
     return (student.course, student.name)
 
-
-# ==================== ФУНКЦИИ-ФИЛЬТРЫ ====================
-
 def filter_honors(student):
     """Фильтр: отличники (GPA >= 4.8)."""
     return student.gpa >= 4.8
@@ -33,8 +30,6 @@ def filter_by_course(course):
     return filter_fn
 
 
-# ==================== ФУНКЦИИ ДЛЯ MAP ====================
-
 def apply_discount(percent):
     """Фабрика: создаёт функцию для применения скидки к стипендии."""
     def discount_fn(student):
@@ -49,8 +44,6 @@ def increase_stipend(percent):
         return student
     return increase_fn
 
-
-# ==================== CALLABLE-ОБЪЕКТЫ (СТРАТЕГИИ) ====================
 
 class DiscountStrategy:
     """Стратегия применения скидки к стипендии (callable-объект)."""
