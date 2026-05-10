@@ -34,7 +34,6 @@ class Student(StudyManageable, AchievementsInterface):
     @property
     def is_studying(self): return self._is_studying
 
-    # Реализация StudyManageable
     def study(self, hours: int) -> str:
         return f"{self._name} занимался {hours} часа, подтянул знания"
 
@@ -69,14 +68,12 @@ class BachelorStudent(Student):
         self._thesis_topic = thesis_topic
         self._has_practice = has_practice
 
-    # Переопределение StudyManageable
     def study(self, hours: int) -> str:
         return f"{self._name} готовится к защите, позанималась часа {hours}"
 
     def take_exam(self) -> str:
         return f"{self._name} сдала экзамен на отлично! + балл к диплому"
 
-    # Переопределение AchievementsInterface
     def get_achievements(self) -> list:
         achievements = []
         if self._has_practice:
@@ -104,7 +101,6 @@ class MasterStudent(Student):
         self._research_topic = research_topic
         self._publications_count = publications_count
 
-    # Переопределение StudyManageable
     def study(self, hours: int) -> str:
         return f"{self._name} написал часть научной статьи за {hours} часов"
 
