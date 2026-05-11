@@ -42,7 +42,6 @@ class Student(StudyManageable, AchievementsInterface):
         grade = "5" if gpa_int >= 5 else "4" if gpa_int >= 3 else "3"
         return f"{self._name} сдал экзамен на {grade}"
 
-    # Реализация AchievementsInterface
     def get_achievements(self) -> list:
         return [f"Посещаемость {int(self._gpa * 20)}%"]
 
@@ -53,6 +52,12 @@ class Student(StudyManageable, AchievementsInterface):
             return "хорошо"
         else:
             return "удовлетворительно"
+
+    def display(self) -> str:
+        return f"Студент: {self._name}, курс {self._course}, GPA {self._gpa}"
+    
+    def score(self) -> float:
+        return self._gpa * 20
 
     def __str__(self):
         status = "Учится" if self._is_studying else "Отчислен"
@@ -87,6 +92,13 @@ class BachelorStudent(Student):
     def defend_thesis(self):
         return f"{self._name} защитила курсовую на тему '{self._thesis_topic}'"
 
+    def display(self) -> str:
+        practice = "есть" if self._has_practice else "нет"
+        return f"Бакалавр: {self._name}, практика: {practice}"
+    
+    def score(self) -> float:
+        return super().score() + (5 if self._has_practice else 0)
+
     def __str__(self):
         base_str = super().__str__()
         practice = "есть" if self._has_practice else "нет"
@@ -107,7 +119,6 @@ class MasterStudent(Student):
     def take_exam(self) -> str:
         return f"{self._name} сдал кандидатский минимум"
 
-    # Переопределение AchievementsInterface
     def get_achievements(self) -> list:
         achievements = []
         if self._publications_count > 0:
@@ -121,6 +132,12 @@ class MasterStudent(Student):
     def publish_article(self):
         self._publications_count += 1
         return f"{self._name} опубликовал статью (всего: {self._publications_count})"
+
+    def display(self) -> str:
+        return f"Магистр: {self._name}, публикаций: {self._publications_count}"
+    
+    def score(self) -> float:
+        return super().score() + self._publications_count * 2
 
     def __str__(self):
         base_str = super().__str__()
