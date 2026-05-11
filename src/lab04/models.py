@@ -53,6 +53,7 @@ class Student(StudyManageable, AchievementsInterface):
         else:
             return "удовлетворительно"
 
+
     def display(self) -> str:
         return f"Студент: {self._name}, курс {self._course}, GPA {self._gpa}"
     
